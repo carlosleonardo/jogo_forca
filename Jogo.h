@@ -36,6 +36,17 @@ public:
      */
     [[nodiscard]] bool verificarPalavraCerta() const;
 
+    /**
+     * Exibe progressivamente o corpo a medida que o jogador erra o palpite
+     */
+    void exibirPartesCorpo() const;
+
+    /**
+     * Verifica se foi alcançado o máximo de tentativas
+     * @return false se não é fimm de jogo
+     */
+    [[nodiscard]] bool fimJogo() const;
+
 private:
     constexpr static int MAX_TENTATIVAS = 6;
     constexpr static char m_corpo[MAX_TENTATIVAS][20] = {

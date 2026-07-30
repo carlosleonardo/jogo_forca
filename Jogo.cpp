@@ -16,12 +16,15 @@ bool Jogo::verificaAposta(const char letra) {
         m_letrasCertas += letra;
         return true;
     }
+    m_tentativasErrada++;
     return false;
 }
 
 void Jogo::iniciaJogo(const std::string &palavra) {
     m_palavraEscondida = palavra;
     m_tentativasErrada = 0;
+    m_letraApostada = 0;
+    m_letrasCertas.clear();
 }
 
 std::string Jogo::gerarPalavra() const {
@@ -34,4 +37,15 @@ std::string Jogo::gerarPalavra() const {
 
 bool Jogo::verificarPalavraCerta() const {
     return m_palavraEscondida == gerarPalavra();
+}
+
+void Jogo::exibirPartesCorpo() const {
+    std::cout << "Tentativas erradas: " << m_tentativasErrada << std::endl;
+    for (int i = 0; i < m_tentativasErrada && i < MAX_TENTATIVAS; ++i) {
+        std::cout << m_corpo[i] << std::endl;
+    }
+}
+
+bool Jogo::fimJogo() const {
+    return m_tentativasErrada == MAX_TENTATIVAS;
 }

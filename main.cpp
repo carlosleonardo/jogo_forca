@@ -42,9 +42,18 @@ int main() {
                 std::cout << "Acertou!" << std::endl;
             } else {
                 std::cout << "Errou!" << std::endl;
+                jogo.exibirPartesCorpo();
+                if (jogo.fimJogo()) {
+                    std::cout << "Fim de jogo! A palavra era: " << palavra << std::endl;
+                    break;
+                }
             }
         } while (!jogo.verificarPalavraCerta());
-        std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavra() << std::endl;
+        if (jogo.verificarPalavraCerta()) {
+            std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavra() << std::endl;
+        } else {
+            std::cout << "Você foi enforcado!" << std::endl;
+        }
     } while (true);
     return 0;
 }
