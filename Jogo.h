@@ -5,6 +5,7 @@
 #ifndef JOGO_FORCA_JOGO_H
 #define JOGO_FORCA_JOGO_H
 #include <string>
+#include <vector>
 
 
 class Jogo {
@@ -23,6 +24,18 @@ public:
      */
     void iniciaJogo(const std::string &palavra);
 
+    /**
+     * Gera a palavra em formato de asteriscos, ocultando as letras ainda não acertadas.
+     * @return A palavra em formato de asteriscos
+     */
+    [[nodiscard]] std::string gerarPalavra() const;
+
+    /**
+     * Verifica se a palavra foi completamente acertada.
+     * @return true se a palavra foi acertada, false caso contrário.
+     */
+    [[nodiscard]] bool verificarPalavraCerta() const;
+
 private:
     constexpr static int MAX_TENTATIVAS = 6;
     constexpr static char m_corpo[MAX_TENTATIVAS][20] = {
@@ -33,7 +46,9 @@ private:
         " /   ",
         " / \\ "
     };
-    int m_tentativas{0};
+    int m_tentativasErrada{0};
+    char m_letraApostada{0};
+    std::string m_letrasCertas;
     std::string m_palavraEscondida;
 };
 

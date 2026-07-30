@@ -30,6 +30,21 @@ int main() {
         std::cout << "\033[2J\033[1;1H";
 
         jogo.iniciaJogo(palavra);
+        do {
+            std::cout << "Palavra: " << jogo.gerarPalavra() << std::endl;
+            std::cout << "Informe uma letra: ";
+            char letra;
+            std::cin >> letra;
+            if (std::cin.eof()) {
+                break;
+            }
+            if (jogo.verificaAposta(letra)) {
+                std::cout << "Acertou!" << std::endl;
+            } else {
+                std::cout << "Errou!" << std::endl;
+            }
+        } while (!jogo.verificarPalavraCerta());
+        std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavra() << std::endl;
     } while (true);
     return 0;
 }

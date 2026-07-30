@@ -8,14 +8,30 @@
 #include <iostream>
 #include <ostream>
 
-Jogo::Jogo() {
-}
+Jogo::Jogo() = default;
 
-bool Jogo::verificaAposta(char letra) {
-    return std::ranges::any_of(m_palavraEscondida, [&](char c) { return c == letra; });
+bool Jogo::verificaAposta(const char letra) {
+    m_letraApostada = letra;
+    if (std::ranges::any_of(m_palavraEscondida, [&](const char c) { return c == letra; })) {
+        m_letrasCertas += letra;
+        return true;
+    }
+    return false;
 }
 
 void Jogo::iniciaJogo(const std::string &palavra) {
     m_palavraEscondida = palavra;
-    m_tentativas = 0;
+    m_tentativasErrada = 0;
+}
+
+std::string Jogo::gerarPalavra() const {
+    std::string novaPalavra;
+    for (const char c: m_palavraEscondida) {
+        novaPalavra += (c == ' ') ? ' ' : (m_letrasCertas.find(c) != std::string::npos ? c : '*');
+    }
+    return novaPalavra;
+}
+
+bool Jogo::verificarPalavraCerta() const {
+    return m_palavraEscondida == gerarPalavra();
 }
