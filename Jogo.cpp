@@ -27,7 +27,7 @@ void Jogo::iniciaJogo(const std::string &palavra) {
     m_letrasCertas.clear();
 }
 
-std::string Jogo::gerarPalavra() const {
+std::string Jogo::gerarPalavraCamuflada() const {
     std::string novaPalavra;
     for (const char c: m_palavraEscondida) {
         novaPalavra += (c == ' ') ? ' ' : (m_letrasCertas.find(c) != std::string::npos ? c : '*');
@@ -36,7 +36,7 @@ std::string Jogo::gerarPalavra() const {
 }
 
 bool Jogo::verificarPalavraCerta() const {
-    return m_palavraEscondida == gerarPalavra();
+    return m_palavraEscondida == gerarPalavraCamuflada();
 }
 
 void Jogo::exibirPartesCorpo() const {

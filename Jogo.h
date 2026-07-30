@@ -28,7 +28,7 @@ public:
      * Gera a palavra em formato de asteriscos, ocultando as letras ainda não acertadas.
      * @return A palavra em formato de asteriscos
      */
-    [[nodiscard]] std::string gerarPalavra() const;
+    [[nodiscard]] std::string gerarPalavraCamuflada() const;
 
     /**
      * Verifica se a palavra foi completamente acertada.

@@ -31,7 +31,7 @@ int main() {
 
         jogo.iniciaJogo(palavra);
         do {
-            std::cout << "Palavra: " << jogo.gerarPalavra() << std::endl;
+            std::cout << "Palavra: " << jogo.gerarPalavraCamuflada() << std::endl;
             std::cout << "Informe uma letra: ";
             char letra;
             std::cin >> letra;
@@ -50,7 +50,7 @@ int main() {
             }
         } while (!jogo.verificarPalavraCerta());
         if (jogo.verificarPalavraCerta()) {
-            std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavra() << std::endl;
+            std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavraCamuflada() << std::endl;
         } else {
             std::cout << "Você foi enforcado!" << std::endl;
         }
