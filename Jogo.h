@@ -49,13 +49,57 @@ public:
 
 private:
     constexpr static int MAX_TENTATIVAS = 6;
-    constexpr static char m_corpo[MAX_TENTATIVAS][20] = {
-        "  |  ",
-        "  O  ",
-        " /|  ",
-        " /|\\ ",
-        " /   ",
-        " / \\ "
+
+    static constexpr const char *ESTAGIOS[] = {
+        R"( +---+
+ |   |
+     |
+     |
+     |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+     |
+     |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+ |   |
+     |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+/|   |
+     |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+/|\  |
+     |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+/|\  |
+/    |
+     |
+=======)",
+        R"( +---+
+ |   |
+ O   |
+/|\  |
+/ \  |
+     |
+=======)"
     };
     int m_tentativasErrada{0};
     char m_letraApostada{0};

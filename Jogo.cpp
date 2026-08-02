@@ -41,9 +41,8 @@ bool Jogo::verificarPalavraCerta() const {
 
 void Jogo::exibirPartesCorpo() const {
     std::cout << "Tentativas erradas: " << m_tentativasErrada << std::endl;
-    for (int i = 0; i < m_tentativasErrada && i < MAX_TENTATIVAS; ++i) {
-        std::cout << m_corpo[i] << std::endl;
-    }
+
+    std::cout << ESTAGIOS[m_tentativasErrada] << std::endl;
 }
 
 bool Jogo::fimJogo() const {
