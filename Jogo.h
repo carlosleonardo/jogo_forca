@@ -8,7 +8,7 @@
 #include <vector>
 
 
-class Jogo {
+class Jogo final {
 public:
     Jogo();
 
