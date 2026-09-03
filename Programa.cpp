@@ -102,7 +102,7 @@ int Programa::executar() {
                     break;
                 }
             }
-        } while (true);
+        } while (!jogo.verificarPalavraCerta());
         if (jogo.verificarPalavraCerta()) {
             std::cout << "Parabéns! Você acertou a palavra: " << m_palavra << std::endl;
         } else {
