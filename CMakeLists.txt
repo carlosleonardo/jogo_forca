@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(jogo_forca main.cpp
         Jogo.cpp
-        Jogo.h)
+        Jogo.h
+        Programa.cpp
+        Programa.h)

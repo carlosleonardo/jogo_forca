@@ -12,6 +12,7 @@
 #include <windows.h>
 #endif
 #include "Jogo.h"
+#include "Programa.h"
 
 int main() {
 #ifdef _WIN32
@@ -20,45 +21,6 @@ int main() {
 #endif
     std::cout << "Jogo da Forca!" << std::endl;
 
-    Jogo jogo;
-    do {
-        std::cout << "Jogador que adivinha deve se afastar para não ver a palavra\n";
-        std::cout << "Informe a palavra para ocultar(Fim-de-arquivo finaliza): ";
-        std::string palavra;
-
-        // Exibe asteriscos na entrada
-        std::cin >> palavra;
-        if (std::cin.eof()) {
-            break;
-        }
-        // Limpa a tela
-        std::cout << "\033[2J\033[1;1H";
-
-        jogo.iniciaJogo(palavra);
-        do {
-            std::cout << "Palavra: " << jogo.gerarPalavraCamuflada() << std::endl;
-            std::cout << "Informe uma letra: ";
-            char letra;
-            std::cin >> letra;
-            if (std::cin.eof()) {
-                break;
-            }
-            if (jogo.verificaAposta(letra)) {
-                std::cout << "Acertou!" << std::endl;
-            } else {
-                std::cout << "Errou!" << std::endl;
-                jogo.exibirPartesCorpo();
-                if (jogo.fimJogo()) {
-                    std::cout << "Fim de jogo! A palavra era: " << palavra << std::endl;
-                    break;
-                }
-            }
-        } while (!jogo.verificarPalavraCerta());
-        if (jogo.verificarPalavraCerta()) {
-            std::cout << "Parabéns! Você acertou a palavra: " << jogo.gerarPalavraCamuflada() << std::endl;
-        } else {
-            std::cout << "Você foi enforcado!" << std::endl;
-        }
-    } while (true);
-    return 0;
+    Programa programa;
+    return programa.executar();
 }
