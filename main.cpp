@@ -3,6 +3,7 @@
  * Implementa o jogo usando caracteres para representar uma forca
  * Exibe um texto escondido usando '*' para esconder os caracteres
  * O jogador deve adivinhar a palavra definindo as letras certas
+ * Também é possível jogar contra o computador, que sorteia uma palavra de um arquivo de palavras
  *
  * @author Carlos Leonardo
  */

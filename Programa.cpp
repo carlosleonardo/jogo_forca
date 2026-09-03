@@ -123,6 +123,7 @@ OpcaoMenu Programa::exibirMenu() {
     std::cout << std::format("{}. Sair", static_cast<int>(OpcaoMenu::SAIR)) << std::endl;
     std::cout << "Escolha uma opção: ";
 
+    // Se o usuário pressionar Ctrl+D (EOF) no Linux ou Ctrl+Z no Windows, limpamos os bits de estado da stream
     if (std::cin.eof()) {
         std::cin.clear();
     }

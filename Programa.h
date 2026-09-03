@@ -4,7 +4,6 @@
 
 #ifndef JOGO_FORCA_PROGRAMA_H
 #define JOGO_FORCA_PROGRAMA_H
-#include <optional>
 #include <random>
 #include <set>
 #include <string>
@@ -16,7 +15,7 @@ enum class OpcaoMenu {
     FALHA = -1,
 };
 
-class Programa {
+class Programa final {
 public:
     bool solicitarPalavraOcultar();
 
