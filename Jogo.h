@@ -47,6 +47,10 @@ public:
      */
     [[nodiscard]] bool fimJogo() const;
 
+    bool computarMetadeDosAcertos();
+
+    bool apostarPalavraCerta(const std::string &palavra) const;
+
 private:
     constexpr static int MAX_TENTATIVAS = 6;
 
@@ -105,6 +109,9 @@ private:
     char m_letraApostada{0};
     std::string m_letrasCertas;
     std::string m_palavraEscondida;
+
+
+    bool verificarAcertos() const;
 };
 
 

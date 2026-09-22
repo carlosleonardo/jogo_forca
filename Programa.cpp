@@ -79,8 +79,43 @@ int Programa::executar() {
         }
 
         jogo.iniciaJogo(m_palavra);
+        bool ofereceuTentativa = true;
         do {
             std::cout << "Palavra: " << jogo.gerarPalavraCamuflada() << std::endl;
+            if (jogo.computarMetadeDosAcertos() && ofereceuTentativa) {
+                ofereceuTentativa = false;
+                std::cout << "Você acertou metade da palavra! Deseja tentar adivinhar a palavra completa? (s/n): ";
+                char resposta;
+                std::cin >> resposta;
+                if (std::cin.eof()) {
+                    break;
+                }
+                if (std::cin.fail()) {
+                    tratarErroEntrada(); // Ignora a entrada inválida
+                    std::cout << "Entrada inválida. Por favor, digite 's' ou 'n'." << std::endl;
+                    continue;
+                }
+                if (resposta == 's' || resposta == 'S') {
+                    std::cout << "Informe a palavra completa: ";
+                    std::string tentativaPalavra;
+                    std::cin >> tentativaPalavra;
+                    if (std::cin.eof()) {
+                        break;
+                    }
+                    if (std::cin.fail()) {
+                        tratarErroEntrada(); // Ignora a entrada inválida
+                        std::cout << "Entrada inválida. Por favor, digite uma palavra válida." << std::endl;
+                        continue;
+                    }
+                    if (jogo.apostarPalavraCerta(tentativaPalavra)) {
+                        std::cout << "Parabéns! Você acertou a palavra: " << m_palavra << std::endl;
+                        break; // Sai do loop se acertou a palavra
+                    } else {
+                        std::cout << "Errou! A palavra correta era: " << m_palavra << std::endl;
+                        break; // Sai do loop se errou a palavra
+                    }
+                }
+            }
             std::cout << "Informe uma letra: ";
             char letra;
             std::cin >> letra;
@@ -97,15 +132,11 @@ int Programa::executar() {
             } else {
                 std::cout << "Errou!" << std::endl;
                 jogo.exibirPartesCorpo();
-                if (jogo.fimJogo()) {
-                    std::cout << "Fim de jogo! A palavra era: " << m_palavra << std::endl;
-                    break;
-                }
             }
-        } while (!jogo.verificarPalavraCerta());
+        } while (!jogo.fimJogo() && !jogo.verificarPalavraCerta());
         if (jogo.verificarPalavraCerta()) {
             std::cout << "Parabéns! Você acertou a palavra: " << m_palavra << std::endl;
-        } else {
+        } else if (ofereceuTentativa) {
             std::cout << "Você foi enforcado!" << std::endl;
         }
     } while (true);

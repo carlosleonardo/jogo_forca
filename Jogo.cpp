@@ -46,5 +46,27 @@ void Jogo::exibirPartesCorpo() const {
 }
 
 bool Jogo::fimJogo() const {
-    return m_tentativasErrada == MAX_TENTATIVAS;
+    return m_tentativasErrada == MAX_TENTATIVAS || verificarPalavraCerta();
+}
+
+bool Jogo::computarMetadeDosAcertos() {
+    const int tamanhoPalavra = m_palavraEscondida.length();
+    const int metadeTamanho = tamanhoPalavra / 2;
+    int acertos = 0;
+
+    for (const char c: m_palavraEscondida) {
+        if (m_letrasCertas.find(c) != std::string::npos) {
+            acertos++;
+        }
+    }
+
+    return acertos >= metadeTamanho;
+}
+
+bool Jogo::apostarPalavraCerta(const std::string &palavra) const {
+    return palavra == m_palavraEscondida;
+}
+
+bool Jogo::verificarAcertos() const {
+    return m_palavraEscondida == gerarPalavraCamuflada();
 }
