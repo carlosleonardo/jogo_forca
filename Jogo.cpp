@@ -50,8 +50,8 @@ bool Jogo::fimJogo() const {
 }
 
 bool Jogo::computarMetadeDosAcertos() {
-    const int tamanhoPalavra = m_palavraEscondida.length();
-    const int metadeTamanho = tamanhoPalavra / 2;
+    const auto tamanhoPalavra{m_palavraEscondida.length()};
+    const auto metadeTamanho{tamanhoPalavra / 2};
     int acertos = 0;
 
     for (const char c: m_palavraEscondida) {
